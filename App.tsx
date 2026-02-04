@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import Scene from './components/Scene';
 import UI from './components/UI';
+import { LanguageProvider } from './LanguageContext';
 
 // Loading fallback
 const Loader = () => {
@@ -13,12 +14,14 @@ const Loader = () => {
 
 function App() {
   return (
-    <div className="relative w-full min-h-screen bg-black text-white selection:bg-white selection:text-black">
-      <Suspense fallback={<Loader />}>
-        <Scene />
-        <UI />
-      </Suspense>
-    </div>
+    <LanguageProvider>
+      <div className="relative w-full min-h-screen bg-black text-white selection:bg-white selection:text-black">
+        <Suspense fallback={<Loader />}>
+          <Scene />
+          <UI />
+        </Suspense>
+      </div>
+    </LanguageProvider>
   );
 }
 
